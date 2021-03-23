@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-public class AgentBehaviour : EnemyBehaviour // MonoBehavoiur
+public class AgentBehaviour : MonoBehaviour // MonoBehavoiur
 {
     public float weight = 1.0f;
     public int priority = 1;

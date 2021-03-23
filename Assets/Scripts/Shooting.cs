@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [SerializeField] private Transform _mainCamera;
-    [SerializeField] private AudioSource _shootAudio;
+    [SerializeField] private AudioSource _shotAudio;
 
     [SerializeField] private GameObject _allEnemiesParent;
     private AllEnemies _allEnemies;
@@ -23,7 +23,7 @@ public class Shooting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _shootAudio.Play();
+            _shotAudio.Play();
             GameObject explosion;
 
             Vector3 direction = _mainCamera.TransformDirection(Vector3.forward);

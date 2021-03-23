@@ -9711,7 +9711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 1204187301}
-  _shootAudio: {fileID: 1021065573}
+  _shotAudio: {fileID: 1021065573}
   _allEnemiesParent: {fileID: 500817687}
   _explosionPrefab: {fileID: 7967256258423195941, guid: ddb36f5ff9042904fb8d0a0377091037,
     type: 3}
@@ -15721,7 +15721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1980242189
 Transform:
   m_ObjectHideFlags: 0

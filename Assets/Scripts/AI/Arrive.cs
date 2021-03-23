@@ -6,15 +6,21 @@ public class Arrive : AgentBehaviour
     public float targetRadius;
     public float slowRadius;
     public float timeToTarget = 0.1f;
+    public bool isTimeToAttack { get; private set; } = false;
+    public bool isStopped = false;
 
     public override Steering GetSteering()
     {
+        
         Steering steering = new Steering();
         Vector3 direction = _target.transform.position - transform.position;
         float distance = direction.magnitude;
         float targetSpeed;
-        if (distance < targetRadius)
+        if (distance < targetRadius || isStopped)
+        {
+            isTimeToAttack = true;
             return steering;
+        }
         if (distance > slowRadius)
             targetSpeed = agent.maxSpeed;
         else
