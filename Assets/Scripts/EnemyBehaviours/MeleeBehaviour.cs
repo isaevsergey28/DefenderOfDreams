@@ -8,4 +8,12 @@ public class MeleeBehaviour : EnemyBehaviour
     {
         base.Attack();
     }
+    private void Start()
+    {
+        GetComponent<Animator>().SetBool("isWalk", true);
+    }
+    private void Update()
+    {
+        transform.LookAt(GameObject.Find("Player").gameObject.transform);
+    }
 }

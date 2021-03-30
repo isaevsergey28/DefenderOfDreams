@@ -8,4 +8,14 @@ public class RangedBehaviour : EnemyBehaviour
     {
         base.Attack();
     }
+
+    private void Start()
+    {
+       GetComponent<Animator>().SetBool("isWalk", true);
+    }
+    private void Update()
+    {
+        Debug.Log(GameObject.Find("Player").gameObject);
+        transform.LookAt(GameObject.Find("Player").gameObject.transform);
+    }
 }

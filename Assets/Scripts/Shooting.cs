@@ -13,6 +13,8 @@ public class Shooting : MonoBehaviour
     [SerializeField] private GameObject _explosionPrefab;
     [SerializeField] private Transform _spawnExplosionPos;
     private ParticleSystem _explosionAnim;
+    private bool _isGunReloaded = true;
+    public float _timeToReload { get; set; } = 0.5f;
 
     private void Start()
     {
@@ -21,8 +23,9 @@ public class Shooting : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _isGunReloaded)
         {
+            _isGunReloaded = false;
             _shotAudio.Play();
             GameObject explosion;
 
@@ -31,16 +34,22 @@ public class Shooting : MonoBehaviour
             DestroyEsplosion(explosion);
             if (Physics.Raycast(_mainCamera.position, direction, out RaycastHit hit, Mathf.Infinity))
             {
-                if(hit.collider.gameObject.TryGetComponent(out Arrive enemy))
+                if(hit.collider.gameObject.TryGetComponent(out EnemyBehaviour enemy))
                 {
-                    _allEnemies.DestroyEnemy(enemy.gameObject);
+                    _allEnemies.DestroyEnemy(enemy.gameObject, 0.5f); // enemy.GetAnimTime()
                 }
             }
-
+            StartCoroutine(ReloadGun());
         }
     }
     private void DestroyEsplosion(GameObject explosion)
     {
         Destroy(explosion, _explosionAnim.main.duration);
+    }
+
+    private IEnumerator ReloadGun()
+    {
+        yield return new WaitForSeconds(_timeToReload);
+        _isGunReloaded = true;
     }
 }

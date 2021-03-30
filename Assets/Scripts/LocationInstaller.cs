@@ -3,9 +3,17 @@ using Zenject;
 
 public class LocationInstaller : MonoInstaller
 {
+    [SerializeField] private AllEnemies _allEnemies;
+
     public override void InstallBindings()
     {
         BindEnemyFactory();
+        BindEnemiesWithBehaviour();
+    }
+
+    private void BindEnemiesWithBehaviour()
+    {
+        Container.Bind<AllEnemies>().FromInstance(_allEnemies).AsSingle();
     }
 
     private void BindEnemyFactory()

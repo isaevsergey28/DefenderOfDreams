@@ -10,9 +10,9 @@ public class AllEnemies : MonoBehaviour
     {
         _allEnemies.Add(enemy);
     }
-    public void DestroyEnemy(GameObject enemy)
+    public void DestroyEnemy(GameObject enemy, float time)
     {
         _allEnemies.Remove(enemy);
-        Destroy(enemy);
+        Destroy(enemy, time);
     }
 }
