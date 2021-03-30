@@ -11,7 +11,7 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     private AllEnemies _allEnemies;
 
     [SerializeField] protected EnemyType _enemyType;
-    [SerializeField] protected Transform _player;
+    [SerializeField] protected GameObject _player;
 
     protected Animation _deathAnim;
 
@@ -20,7 +20,12 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     {
         _allEnemies = allEnemies;
     }
+    private void Awake()
+    {
+        _player = GameObject.Find("Player").gameObject;
+    }
     public virtual void Attack() {}
+
     public void Destroy(GameObject enemy, float time)
     {
         _allEnemies.DestroyEnemy(enemy, time);

@@ -14,6 +14,6 @@ public class MeleeBehaviour : EnemyBehaviour
     }
     private void Update()
     {
-        transform.LookAt(GameObject.Find("Player").gameObject.transform);
+        transform.LookAt(_player.transform);
     }
 }

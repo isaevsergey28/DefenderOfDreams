@@ -15,7 +15,6 @@ public class RangedBehaviour : EnemyBehaviour
     }
     private void Update()
     {
-        Debug.Log(GameObject.Find("Player").gameObject);
-        transform.LookAt(GameObject.Find("Player").gameObject.transform);
+        transform.LookAt(_player.transform);
     }
 }
