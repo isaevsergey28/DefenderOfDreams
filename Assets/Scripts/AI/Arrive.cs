@@ -37,4 +37,15 @@ public class Arrive : AgentBehaviour
         }
         return steering;
     }
+
+    public void CheckDistance()
+    {
+        Vector3 direction = _target.transform.position - transform.position;
+        float distance = direction.magnitude;
+        if (distance > targetRadius)
+        {
+            isStopped = false;
+            isTimeToAttack = false;
+        }
+    }
 }

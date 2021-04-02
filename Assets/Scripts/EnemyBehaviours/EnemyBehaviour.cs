@@ -5,15 +5,21 @@ using Zenject;
 
 public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
 {
-    [SerializeField] protected int _hp;
+    protected EnemyInfo _enemyInfo;
     protected Arrive _enemyBehaviour;
     [SerializeField] protected AudioSource _attackAudio;
-    private AllEnemies _allEnemies;
+    protected AllEnemies _allEnemies;
 
     [SerializeField] protected EnemyType _enemyType;
-    [SerializeField] protected GameObject _player;
+    protected GameObject _player;
 
-    protected Animation _deathAnim;
+    protected Animator animator;
+
+    protected bool _isAlive = true;
+    protected bool _isDamageReceived = false;
+    protected float _currentPlayerDamage;
+
+    public float _animDeathTime { get; set; }
 
     [Inject]
     private void Construct(AllEnemies allEnemies)
@@ -22,8 +28,10 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     }
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         _player = GameObject.Find("Player").gameObject;
     }
+    
     public virtual void Attack() {}
 
     public void Destroy(GameObject enemy, float time)
@@ -35,9 +43,14 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     {
         return _enemyType;
     }
-
-    public float GetAnimTime()
+    
+    public void KillEnemy()
     {
-        return _deathAnim.clip.length;
+        _isAlive = false;
+    }
+    public void GiveDamage(float damage)
+    {
+        _currentPlayerDamage = damage;
+        _isDamageReceived = true;
     }
 }

@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if(Vector3.Distance(marker.transform.position, player.transform.position) < 100f )
             {
-                if(Random.Range(0, 1000) == 10)
+                if(Random.Range(0, 10000) == 10)
                 {
                     _allEnemies.AddEnemy(_enemyFactory.Create(marker.enemyType, marker.transform.position));
                 }
