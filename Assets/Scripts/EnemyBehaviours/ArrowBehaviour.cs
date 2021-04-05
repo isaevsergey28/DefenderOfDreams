@@ -8,7 +8,7 @@ public class ArrowBehaviour : MonoBehaviour
     private Player _player;
     private Vector3 _playerPos;
     [SerializeField] private float _arrowSpeed = 10f;
-
+    [SerializeField] private float _arrowDamage = 10f;
     [Inject]
     private void Construct(Player player)
     {
@@ -25,5 +25,12 @@ public class ArrowBehaviour : MonoBehaviour
         transform.position =  Vector3.MoveTowards(transform.position, _playerPos, Time.deltaTime * _arrowSpeed);
    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out Player player))
+        {
+            player.GiveDamage(_arrowDamage);
+        }
+    }
 }
  

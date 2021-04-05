@@ -49,7 +49,10 @@ public class ExplosiveBehaviour : EnemyBehaviour
 
     public override void Attack()
     {
-        StartCoroutine(Explode(1f));
+        if(_isAlive)
+        {
+            StartCoroutine(Explode(1f));
+        }
     }
     
     public IEnumerator Explode(float timeToExplode)
@@ -59,6 +62,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
         HideEnemy();
         GameObject explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
         DestroyEnemyAndExplosion(explosion);
+        SaveDeadEnemyPos(gameObject.transform.position);
     }
 
     private void DestroyEnemyAndExplosion(GameObject explosion)

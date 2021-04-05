@@ -19,17 +19,24 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     protected bool _isDamageReceived = false;
     protected float _currentPlayerDamage;
 
+    public delegate void OnEnemyDead(Vector3 position);
+    static public event OnEnemyDead onEnemyDead;
+
     public float _animDeathTime { get; set; }
+
+    private BoxCollider _boxCollider;
 
     [Inject]
     private void Construct(AllEnemies allEnemies)
     {
         _allEnemies = allEnemies;
+
     }
     private void Awake()
     {
         animator = GetComponent<Animator>();
         _player = GameObject.Find("Player").gameObject;
+        _boxCollider = GetComponent<BoxCollider>();
     }
     
     public virtual void Attack() {}
@@ -44,13 +51,18 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
         return _enemyType;
     }
     
-    public void KillEnemy()
+    public void OffCollider()
     {
-        _isAlive = false;
+        _boxCollider.enabled = false;
     }
     public void GiveDamage(float damage)
     {
         _currentPlayerDamage = damage;
         _isDamageReceived = true;
+    }
+
+    public void SaveDeadEnemyPos(Vector3 enemyPosition)
+    {
+        onEnemyDead.Invoke(enemyPosition);
     }
 }

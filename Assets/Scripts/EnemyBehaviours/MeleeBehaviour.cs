@@ -37,6 +37,8 @@ public class MeleeBehaviour : EnemyBehaviour
             {
                 _isAlive = false;
                 _allEnemies.DestroyEnemy(gameObject, 1f);
+                OffCollider();
+                SaveDeadEnemyPos(gameObject.transform.position);
             }
         }
     }
