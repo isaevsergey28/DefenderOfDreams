@@ -14,16 +14,25 @@ public class MeleeBehaviour : EnemyBehaviour
     }
     private void Update()
     {
-        if (_isAlive)
+        if(_isPlayerAlive)
         {
-            CheckForAttack();
-            CheckHealth();
+            if (_isAlive)
+            {
+                CheckForAttack();
+                CheckHealth();
+            }
+            else
+            {
+                EnableDeadAnim();
+                _animDeathTime = animator.GetCurrentAnimatorStateInfo(0).length;
+
+            }
         }
         else
         {
-            EnableDeadAnim();
-            _animDeathTime = animator.GetCurrentAnimatorStateInfo(0).length;
-
+            animator.SetBool("isWalk", false);
+            animator.SetBool("isMeleeFight", false);
+            animator.SetBool("isMeleeDead", false);
         }
     }
 

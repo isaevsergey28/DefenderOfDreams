@@ -8,6 +8,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
     private bool _isWantToExplode = false;
     private ParticleSystem _explosionAnim;
     private MeshRenderer _enemyBody;
+    [SerializeField] private float _damageRadius = 5f;
 
     private void Start()
     {
@@ -19,9 +20,12 @@ public class ExplosiveBehaviour : EnemyBehaviour
 
     private void Update()
     {
-        transform.LookAt(_player.transform);
-        CheckForAttack();
-        CheckHealth();
+        if(_isPlayerAlive)
+        {
+            transform.LookAt(_player.transform);
+            CheckForAttack();
+            CheckHealth();
+        }
     }
 
     private void CheckHealth()
@@ -63,6 +67,12 @@ public class ExplosiveBehaviour : EnemyBehaviour
         GameObject explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
         DestroyEnemyAndExplosion(explosion);
         SaveDeadEnemyPos(gameObject.transform.position);
+
+        Vector3 distance = transform.position - _player.transform.position;
+        if(distance.magnitude <= _damageRadius)
+        {
+            _player.GetComponent<Player>().GiveDamage(_enemyInfo._damage);
+        }
     }
 
     private void DestroyEnemyAndExplosion(GameObject explosion)

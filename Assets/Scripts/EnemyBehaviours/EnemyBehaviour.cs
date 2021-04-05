@@ -26,6 +26,8 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
 
     private BoxCollider _boxCollider;
 
+    protected bool _isPlayerAlive = true;
+
     [Inject]
     private void Construct(AllEnemies allEnemies)
     {
@@ -37,9 +39,10 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
         animator = GetComponent<Animator>();
         _player = GameObject.Find("Player").gameObject;
         _boxCollider = GetComponent<BoxCollider>();
+        Player.onPlayerDead += StopGame;
     }
-    
-    public virtual void Attack() {}
+
+    public virtual void Attack() { }
 
     public void Destroy(GameObject enemy, float time)
     {
@@ -50,7 +53,7 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     {
         return _enemyType;
     }
-    
+
     public void OffCollider()
     {
         _boxCollider.enabled = false;
@@ -64,5 +67,12 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     public void SaveDeadEnemyPos(Vector3 enemyPosition)
     {
         onEnemyDead.Invoke(enemyPosition);
+    }
+
+    private void StopGame()
+    {
+        _isPlayerAlive = false;
+        _enemyBehaviour.isStopped = true;
+
     }
 }
