@@ -12,8 +12,8 @@ public class LocationInstaller : MonoInstaller
     {
         BindEnemyFactory();
         BindEnemiesWithBehaviour();
-        BindPlayerWithArrow();
         BindCamera();
+        BindPlayerWithArrow();
     }
     private void BindCamera()
     {

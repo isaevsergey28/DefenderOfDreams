@@ -733,6 +733,7 @@ MonoBehaviour:
   _enemyType: 2
   _explosionPrefab: {fileID: 7780432385211135251, guid: 63cc13a19a1e3b64c89d5d0d16c7ad8e,
     type: 3}
+  _damageRadius: 5
 --- !u!82 &-5059419708861765614
 AudioSource:
   m_ObjectHideFlags: 0

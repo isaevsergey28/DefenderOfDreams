@@ -39,7 +39,7 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
         animator = GetComponent<Animator>();
         _player = GameObject.Find("Player").gameObject;
         _boxCollider = GetComponent<BoxCollider>();
-        Player.onPlayerDead += StopGame;
+        Player.onPlayerDead += StopEnemy;
     }
 
     public virtual void Attack() { }
@@ -69,10 +69,9 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
         onEnemyDead.Invoke(enemyPosition);
     }
 
-    private void StopGame()
+    private void StopEnemy(bool isAlive)
     {
-        _isPlayerAlive = false;
+        _isPlayerAlive = isAlive;
         _enemyBehaviour.isStopped = true;
-
     }
 }

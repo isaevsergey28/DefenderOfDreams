@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _health = 10;
     public float damage = 15f;
-    private bool _isPlayerAlive = true;
+    public bool isPlayerAlive { get; private set; } = true;
 
-    public delegate void OnPlayerDead();
+    public delegate void OnPlayerDead(bool isAlive);
     static public OnPlayerDead onPlayerDead;
 
     public void GiveDamage(float damage)
@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     {
         if(_health <= 0)
         {
-            _isPlayerAlive = false;
-            onPlayerDead.Invoke();
+            isPlayerAlive = false;
+            onPlayerDead.Invoke(isPlayerAlive);
         }
     }
 }

@@ -16,7 +16,7 @@ public class ArrowBehaviour : MonoBehaviour
     }
     private void Start()
     {
-        // _playerPos = _player.gameObject.transform.position;
+      // _playerPos = _player.gameObject.transform.position;
         _playerPos = GameObject.Find("Player").transform.position;
        
     }

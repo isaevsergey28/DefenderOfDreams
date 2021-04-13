@@ -49,7 +49,7 @@ public class RangedBehaviour : EnemyBehaviour
             if(_enemyInfo._health <= 0)
             {
                 _isAlive = false;
-                _allEnemies.DestroyEnemy(gameObject, 1f);
+                _allEnemies.DestroyEnemy(gameObject.transform.parent.gameObject, 1f);
                 OffCollider();
                 SaveDeadEnemyPos(gameObject.transform.position);
             }
