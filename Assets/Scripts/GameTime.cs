@@ -14,7 +14,6 @@ public class GameTime : MonoBehaviour
     private void Start()
     {
         _gameTime = GetComponent<Text>();
-        Debug.Log(_gameTime);
     }
 
     private void Update()

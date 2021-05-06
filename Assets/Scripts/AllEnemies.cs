@@ -15,4 +15,9 @@ public class AllEnemies : MonoBehaviour
         _allEnemies.Remove(enemy);
         Destroy(enemy, time);
     }
+
+    public List<GameObject> GetEnemies()
+    {
+        return _allEnemies;
+    }
 }

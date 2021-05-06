@@ -8,7 +8,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
     private bool _isWantToExplode = false;
     private ParticleSystem _explosionAnim;
     private MeshRenderer _enemyBody;
-    [SerializeField] private float _damageRadius = 5f;
+    [SerializeField] private float _damageRadius = 2f;
 
     private void Start()
     {
@@ -68,10 +68,34 @@ public class ExplosiveBehaviour : EnemyBehaviour
         DestroyEnemyAndExplosion(explosion);
         SaveDeadEnemyPos(gameObject.transform.position);
 
+        DamageNearbyAgents();
+    }
+
+    private void DamageNearbyAgents()
+    {
         Vector3 distance = transform.position - _player.transform.position;
-        if(distance.magnitude <= _damageRadius)
+        if (distance.magnitude <= _damageRadius)
         {
-            _player.GetComponent<Player>().GiveDamage(_enemyInfo._damage);
+            if (_player.TryGetComponent<Player>(out Player player))
+            {
+                player.GiveDamage(_enemyInfo._damage);
+            }
+        }
+
+        if (transform.parent.TryGetComponent<AllEnemies>(out AllEnemies allEnemies))
+        {
+            foreach (var enemy in allEnemies.GetEnemies())
+            {
+                GameObject currentEnemy = enemy.gameObject.transform.GetChild(0).gameObject;
+                distance = transform.position - currentEnemy.transform.position;
+                if (distance.magnitude <= _damageRadius)
+                {
+                    if(currentEnemy.TryGetComponent<EnemyBehaviour>(out EnemyBehaviour enemyBehaviour))
+                    {
+                        enemyBehaviour.GiveDamage(_enemyInfo._damage);
+                    }
+                }
+            }
         }
     }
 
@@ -84,8 +108,11 @@ public class ExplosiveBehaviour : EnemyBehaviour
     private void HideEnemy()
     {
         _enemyBody.enabled = false;
-        _enemyBody.GetComponent<MeshRenderer>().enabled = false;
-        DisableChilds();
+        if (_enemyBody.TryGetComponent<MeshRenderer>(out MeshRenderer meshRenderer))
+        {
+            meshRenderer.enabled = false;
+            DisableChilds();
+        }
     }
 
     public void DisableChilds() 

@@ -25,7 +25,6 @@ public class EnemySpawner : MonoBehaviour
     {
         _allEnemies = _allEnemiesParent.GetComponent<AllEnemies>();
         player = playerTransform.gameObject.GetComponent<Player>();
-        Debug.Log(player.isPlayerAlive);
 
     }
     private void Update()
