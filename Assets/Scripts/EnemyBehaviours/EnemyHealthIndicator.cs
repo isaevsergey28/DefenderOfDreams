@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class HealthIndicator : MonoBehaviour
+public class EnemyHealthIndicator : MonoBehaviour
 {
     private Camera _mainCamera;
     private EnemyInfo _enemyInfo;
