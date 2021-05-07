@@ -82,7 +82,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
             }
         }
 
-        if (transform.parent.TryGetComponent<AllEnemies>(out AllEnemies allEnemies))
+        if (transform.root.TryGetComponent<AllEnemies>(out AllEnemies allEnemies))
         {
             foreach (var enemy in allEnemies.GetEnemies())
             {
@@ -101,7 +101,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
 
     private void DestroyEnemyAndExplosion(GameObject explosion)
     {
-        base.Destroy(gameObject, _explosionAnim.main.duration);
+        base.Destroy(gameObject.transform.parent.gameObject, _explosionAnim.main.duration);
         Destroy(explosion, _explosionAnim.main.duration);
     }
 
