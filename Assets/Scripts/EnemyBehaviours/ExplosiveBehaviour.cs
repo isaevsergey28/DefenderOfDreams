@@ -78,7 +78,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
         {
             if (_player.TryGetComponent<Player>(out Player player))
             {
-                player.GiveDamage(_enemyInfo._damage);
+                player.GiveDamage(_enemyInfo._damage / distance.magnitude);
             }
         }
 
@@ -92,7 +92,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
                 {
                     if(currentEnemy.TryGetComponent<EnemyBehaviour>(out EnemyBehaviour enemyBehaviour))
                     {
-                        enemyBehaviour.GiveDamage(_enemyInfo._damage);
+                        enemyBehaviour.GiveDamage(_enemyInfo._damage / distance.magnitude);
                     }
                 }
             }

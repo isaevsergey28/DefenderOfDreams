@@ -11,6 +11,7 @@ public class SpeedImprovement : Improvement
             Destroy(this.gameObject.transform.parent.gameObject);
             player.m_MoveSpeedMultiplier += 0.1f;
             player.m_AnimSpeedMultiplier += 0.1f;
+            base.AddToInventory();
         }
     }
 }

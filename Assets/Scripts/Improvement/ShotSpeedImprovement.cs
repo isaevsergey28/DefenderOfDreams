@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotSpeedImprovement : MonoBehaviour
+public class ShotSpeedImprovement : Improvement
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +15,7 @@ public class ShotSpeedImprovement : MonoBehaviour
                 {
                     shooting._timeToReload -= 0.05f;
                 }
+                base.AddToInventory();
             }
         }
     }

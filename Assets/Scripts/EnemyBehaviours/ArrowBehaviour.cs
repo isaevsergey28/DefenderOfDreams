@@ -7,7 +7,7 @@ public class ArrowBehaviour : MonoBehaviour
 {
     private Player _player;
     private Vector3 _playerPos;
-    [SerializeField] private float _arrowSpeed = 10f;
+    [SerializeField] private float _arrowSpeed = 45f;
     [SerializeField] private float _arrowDamage = 10f;
     [Inject]
     private void Construct(Player player)

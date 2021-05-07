@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageImprovement : MonoBehaviour
+public class DamageImprovement : Improvement
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -10,6 +10,7 @@ public class DamageImprovement : MonoBehaviour
         {
             Destroy(this.gameObject.transform.parent.gameObject);
             player.damage += 2;
+            base.AddToInventory();
         }
     }
 }

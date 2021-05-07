@@ -1,19 +1,18 @@
 using UnityEngine;
 using Zenject;
 
-public class LocationInstaller : MonoInstaller
+public class BootstrapInstaller : MonoInstaller
 {
     [SerializeField] private AllEnemies _allEnemies;
     [SerializeField] private Player _player;
     [SerializeField] private Camera _mainCamera;
-
 
     public override void InstallBindings()
     {
         BindEnemyFactory();
         BindEnemiesWithBehaviour();
         BindCamera();
-        BindPlayerWithArrow();
+        BindPlayerWithArrow();;
     }
     private void BindCamera()
     {
