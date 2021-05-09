@@ -23,6 +23,7 @@ public class EnemyHealthIndicator : MonoBehaviour
     private void Start()
     {
         _enemyInfo = transform.parent.GetComponent<EnemyInfo>();
+        _healthSlider.maxValue = transform.parent.GetComponent<EnemyInfo>()._health;
     }
     private void Update()
     {

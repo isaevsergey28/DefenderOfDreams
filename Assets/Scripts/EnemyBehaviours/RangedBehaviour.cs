@@ -62,7 +62,6 @@ public class RangedBehaviour : EnemyBehaviour
         animator.SetBool("isRangedFight", false);
         animator.SetBool("isRangedDead", true);
     }
-
     private void LateUpdate()
     {
         if (_isAlive)
