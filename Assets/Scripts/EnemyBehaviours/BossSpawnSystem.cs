@@ -15,6 +15,6 @@ public class BossSpawnSystem : MonoBehaviour
 
     private void RandomizeSpawnPos()
     {
-        _spawnPosition = transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+        _spawnPosition = transform.position + new Vector3(Random.Range(-50, 50), 0, Random.Range(-30, 30));
     }
 }

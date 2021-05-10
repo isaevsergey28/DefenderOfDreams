@@ -7,7 +7,7 @@ public class RangedBehaviour : EnemyBehaviour
     private bool isReadyToAttack = true;
     public bool isAtacking { get; set; } = false;
 
-    private float _animationReloadTime = 1.5f;
+    private float _animationReloadTime = 0.25f;
 
     private void Start()
     {
@@ -49,8 +49,8 @@ public class RangedBehaviour : EnemyBehaviour
             if(_enemyInfo._health <= 0)
             {
                 _isAlive = false;
-                _allEnemies.DestroyEnemy(gameObject.transform.parent.gameObject, 1f);
-                OffCollider();
+                _allEnemies.DestroyEnemy(gameObject.gameObject, 45f);
+                //OffCollider();
                 SaveDeadEnemyPos(gameObject.transform.position);
             }
         }

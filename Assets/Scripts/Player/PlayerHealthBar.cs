@@ -10,14 +10,18 @@ public class PlayerHealthBar : MonoBehaviour
     private Text _healthText;
     private void Awake()
     {
+        Player.onPlayerHealthChange += SetBootstrap;
         Player.onPlayerHealthChange += SetHealthBar;
-    }
-
-    private void Start()
-    {
         _healthSlider = GetComponent<Slider>();
         _healthText = GetComponentInChildren<Text>();
-        _maxHealth = (int)_healthSlider.maxValue;
+    }
+
+    private void SetBootstrap(float maxHealth)
+    {
+        _healthSlider.maxValue = maxHealth;
+        _healthSlider.value = maxHealth;
+        _maxHealth = (int)maxHealth;
+        Player.onPlayerHealthChange -= SetBootstrap;
     }
     private void SetHealthBar(float health)
     {

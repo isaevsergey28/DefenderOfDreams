@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -21,6 +23,11 @@ public class EnemySpawner : MonoBehaviour
         _enemyFactory.Load();
     }
 
+    private void Awake()
+    {
+        enemyMarkers = GetComponentsInChildren<EnemyMarker>();
+    }
+
     private void Start()
     {
         _allEnemies = _allEnemiesParent.GetComponent<AllEnemies>();
@@ -33,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if(Vector3.Distance(marker.transform.position, playerTransform.transform.position) < 100f && player.isPlayerAlive)
             {
-                if(Random.Range(0, 10000) == 10)
+                if(Random.Range(0, 7000) == 10)
                 {
                     _allEnemies.AddEnemy(_enemyFactory.Create(marker.enemyType, marker.transform.position));
                 }

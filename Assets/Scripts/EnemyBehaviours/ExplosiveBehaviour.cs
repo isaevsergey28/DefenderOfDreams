@@ -86,7 +86,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
         {
             foreach (var enemy in allEnemies.GetEnemies())
             {
-                GameObject currentEnemy = enemy.gameObject.transform.GetChild(0).gameObject;
+                GameObject currentEnemy = enemy.gameObject;
                 distance = transform.position - currentEnemy.transform.position;
                 if (distance.magnitude <= _damageRadius)
                 {
@@ -101,7 +101,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
 
     private void DestroyEnemyAndExplosion(GameObject explosion)
     {
-        base.Destroy(gameObject.transform.parent.gameObject, _explosionAnim.main.duration);
+        base.Destroy(gameObject, _explosionAnim.main.duration);
         Destroy(explosion, _explosionAnim.main.duration);
     }
 

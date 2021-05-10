@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
         _health -= damage;
         onPlayerHealthChange?.Invoke(_health);
     }
+
+    public int GiveHealth()
+    {
+        return (int)_health;
+    }
     private void Update()
     {
         if(_health <= 0)

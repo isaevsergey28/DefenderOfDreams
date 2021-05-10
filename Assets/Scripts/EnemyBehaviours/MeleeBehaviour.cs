@@ -5,7 +5,6 @@ using UnityEngine;
 public class MeleeBehaviour : EnemyBehaviour
 {
     public bool isHitActive { get; private set; } = false;
-
     private void Start()
     {
         _enemyBehaviour = GetComponent<Arrive>();
@@ -42,13 +41,18 @@ public class MeleeBehaviour : EnemyBehaviour
         {
             _enemyInfo._health -= _currentPlayerDamage;
             _isDamageReceived = false;
+            animator.SetBool("isMeleeGotHit", true);
             if (_enemyInfo._health <= 0)
             {
                 _isAlive = false;
-                _allEnemies.DestroyEnemy(gameObject.transform.parent.gameObject, 1f);
+                _allEnemies.DestroyEnemy(gameObject, 45f);
                 OffCollider();
                 SaveDeadEnemyPos(gameObject.transform.position);
             }
+        }
+        else
+        {
+            animator.SetBool("isMeleeGotHit", false);
         }
     }
 
@@ -84,9 +88,21 @@ public class MeleeBehaviour : EnemyBehaviour
             animator.SetBool("isMeleeFight", false);
         }
     }
+
     public override void Attack()
     {
-        isHitActive = true;
-        animator.SetBool("isMeleeFight", true);
+        StartCoroutine(AttackCoroutine());
     }
+    private IEnumerator AttackCoroutine()
+    {
+        animator.SetBool("isMeleeFight", true);
+        if (_player.TryGetComponent(out Player player) && !isHitActive)
+        {
+            isHitActive = true;
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+            player.GiveDamage(_enemyInfo._damage);
+            isHitActive = false;
+        }
+    }
+
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -54,9 +55,20 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
         return _enemyType;
     }
 
-    public void OffCollider()
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag.Equals("Ground") && GetEnemyType() == EnemyType.Ranged)
+        {
+            OffCollider();
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x,
+                gameObject.transform.position.y + 1);
+        }
+    }
+
+    protected void OffCollider()
     {
         _boxCollider.enabled = false;
+        GetComponent<Rigidbody>().useGravity = false;
     }
     public void GiveDamage(float damage)
     {
