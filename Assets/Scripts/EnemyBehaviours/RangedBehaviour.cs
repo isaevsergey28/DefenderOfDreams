@@ -50,6 +50,7 @@ public class RangedBehaviour : EnemyBehaviour
             {
                 _isAlive = false;
                 _allEnemies.DestroyEnemy(gameObject.gameObject, 45f);
+                GetComponent<Rigidbody>().useGravity = true;
                 //OffCollider();
                 SaveDeadEnemyPos(gameObject.transform.position);
             }

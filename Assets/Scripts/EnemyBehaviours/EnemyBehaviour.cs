@@ -60,8 +60,7 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
         if (other.gameObject.tag.Equals("Ground") && GetEnemyType() == EnemyType.Ranged)
         {
             OffCollider();
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x,
-                gameObject.transform.position.y + 1);
+            gameObject.transform.Translate(Vector3.up);
         }
     }
 

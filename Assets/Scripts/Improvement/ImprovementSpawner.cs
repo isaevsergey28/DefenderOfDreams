@@ -13,7 +13,7 @@ public class ImprovementSpawner : MonoBehaviour
 
     private void SpawnImprovement(Vector3 enemyDeadPosition)
     {
-        enemyDeadPosition = new Vector3(enemyDeadPosition.x, enemyDeadPosition.y + 3f, enemyDeadPosition.z);
+        enemyDeadPosition = new Vector3(enemyDeadPosition.x, enemyDeadPosition.y, enemyDeadPosition.z);
         Instantiate(_allImprovements[Random.Range(0, _allImprovements.Length)], enemyDeadPosition, Quaternion.identity, transform);
     }
 }
