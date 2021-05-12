@@ -57,7 +57,7 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag.Equals("Ground") && GetEnemyType() == EnemyType.Ranged)
+        if (other.gameObject.tag.Equals("Ground") && GetEnemyType() == EnemyType.Ranged && _enemyInfo._health <=0)
         {
             OffCollider();
             gameObject.transform.Translate(Vector3.up);

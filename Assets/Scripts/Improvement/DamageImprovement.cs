@@ -9,7 +9,7 @@ public class DamageImprovement : Improvement
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
-            Destroy(this.gameObject.transform.parent.gameObject);
+            Destroy(this.gameObject);
             player.damage += 2;
             base.AddToInventory();
         }

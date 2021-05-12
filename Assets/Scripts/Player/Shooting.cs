@@ -17,8 +17,9 @@ public class Shooting : MonoBehaviour
     private ParticleSystem _bleedingAnim;
 
     [SerializeField] private GameObject _damageInfoTextPrefab;
-    
 
+    private Animator _animator;
+    
     private bool _isGunReloaded = true;
     public float _timeToReload { get; set; } = 0.5f;
 
@@ -27,12 +28,17 @@ public class Shooting : MonoBehaviour
         _player = transform.parent.GetComponent<Player>();
         _explosionAnim = _explosionPrefab.GetComponent<ParticleSystem>();
         _bleedingAnim = _bleedingPrefab.GetComponent<ParticleSystem>();
+        _animator = transform.root.GetComponent<Animator>();
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && _isGunReloaded)
         {
             TakeShot();
+        }
+        else
+        {
+            _animator.SetBool("isShooting", false);
         }
     }
 
