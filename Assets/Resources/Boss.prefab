@@ -1290,8 +1290,8 @@ MonoBehaviour:
   blendPriority: 0
   priorityThreshold: 0.2
   blendPipeline: 0
-  maxSpeed: 2
-  maxAccel: 5
+  maxSpeed: 10
+  maxAccel: 17
   maxRotation: 0
   maxAngularAccel: 0
   orientation: 0

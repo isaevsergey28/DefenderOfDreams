@@ -36,10 +36,7 @@ public class Shooting : MonoBehaviour
         {
             TakeShot();
         }
-        else
-        {
-            _animator.SetBool("isShooting", false);
-        }
+        
     }
 
     private void TakeShot()
@@ -47,7 +44,6 @@ public class Shooting : MonoBehaviour
         _isGunReloaded = false;
         _shotAudio.Play();
         GameObject explosion;
-
         Vector3 direction = _mainCamera.TransformDirection(Vector3.forward);
         explosion = Instantiate(_explosionPrefab, _spawnExplosionPos.position, Quaternion.identity, _spawnExplosionPos);
         DestroyEsplosion(explosion);
