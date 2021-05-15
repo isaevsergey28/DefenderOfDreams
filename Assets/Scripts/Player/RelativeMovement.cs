@@ -1,28 +1,64 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class RelativeMovement : MonoBehaviour
 {
+    [SerializeField] private AudioSource _earthMovingAudio;
+    [SerializeField] private AudioSource _waterMovingAudio;
+    [SerializeField] private AudioSource _bridgeMovingAudio;
+  
     [SerializeField] private Transform target; 
     public float rotSpeed = 15.0f;
     public float moveSpeed = 6.0f;
     private CharacterController _charController;
     private Animator _animator;
+    private AudioSource _currentAudio;
     
     public float jumpSpeed = 5.0f;
     public float gravity = -9.8f;
     public float terminalVelocity = -10.0f;
     public float minFall = -1.5f;
     private float _vertSpeed;
-    void Start() 
+   private void Start() 
     {
         _animator = GetComponent<Animator>();
         _charController = GetComponent<CharacterController>(); 
         _vertSpeed = minFall;
     }
 
-    void FixedUpdate()
+   
+   private void FixedUpdate()
     {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out hit))
+        {
+            switch (hit.collider.tag)
+            {
+                case "Ground":
+                    if (_currentAudio != _earthMovingAudio && _currentAudio)
+                    {
+                        _currentAudio.Stop();
+                    }
+                    _currentAudio = _earthMovingAudio;
+                    break;
+                case "Water":
+                    if (_currentAudio != _waterMovingAudio && _currentAudio)
+                    {
+                        _currentAudio.Stop();
+                    }
+                    _currentAudio = _waterMovingAudio;
+                    break;
+                case "Bridge":
+                    if (_currentAudio != _bridgeMovingAudio && _currentAudio)
+                    {
+                        _currentAudio.Stop();
+                    }
+                    _currentAudio = _bridgeMovingAudio;
+                    break;
+            }
+        }
+        
         Vector3 movement = Vector3.zero;
         float horInput = Input.GetAxis("Horizontal");
         float vertInput = Input.GetAxis("Vertical");
@@ -31,6 +67,10 @@ public class RelativeMovement : MonoBehaviour
         {
             if (_charController.isGrounded)
             {
+                if (!_currentAudio.isPlaying)
+                {
+                    _currentAudio.Play();
+                }
                 _animator.SetBool("isRunning", true);
             }
             
@@ -43,12 +83,10 @@ public class RelativeMovement : MonoBehaviour
             target.eulerAngles = new Vector3(0, target.eulerAngles.y, 0);
             movement = target.TransformDirection(movement); 
             target.rotation = tmp;
-            Quaternion direction = Quaternion.LookRotation(movement);
-            transform.rotation = Quaternion.Lerp(transform.rotation,
-                direction, rotSpeed * Time.deltaTime);
         }
         else
         {
+            _earthMovingAudio.Stop();
             _animator.SetBool("isRunning", false);
         }
         

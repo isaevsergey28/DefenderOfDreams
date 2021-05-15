@@ -36,6 +36,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
             _isDamageReceived = false;
             if (_enemyInfo._health <= 0)
             {
+                StopAllCoroutines();
                 _isAlive = false;
                 StartCoroutine(Explode(0f));
             }
