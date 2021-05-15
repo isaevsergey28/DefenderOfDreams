@@ -7,6 +7,8 @@ TagManager:
   - Unit
   - Fire
   - Ground
+  - Water
+  - Bridge
   layers:
   - Default
   - TransparentFX
