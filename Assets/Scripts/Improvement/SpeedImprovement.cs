@@ -11,6 +11,7 @@ public class SpeedImprovement : Improvement
         {
             Destroy(this.gameObject);
             player.moveSpeed++;
+            _animator.SetFloat("MoveSpeed", (int)(_animator.GetFloat("MoveSpeed") + 0.1f));
             base.AddToInventory();
         }
     }

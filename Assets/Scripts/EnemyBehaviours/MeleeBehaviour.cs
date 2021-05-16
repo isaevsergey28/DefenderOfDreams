@@ -39,7 +39,7 @@ public class MeleeBehaviour : EnemyBehaviour
     {
         if (_isDamageReceived)
         {
-            _enemyInfo._health -= _currentPlayerDamage;
+            _enemyInfo._health -= (int)_currentPlayerDamage;
             _isDamageReceived = false;
             animator.SetBool("isMeleeGotHit", true);
             if (_enemyInfo._health <= 0)

@@ -32,7 +32,7 @@ public class ExplosiveBehaviour : EnemyBehaviour
     {
         if (_isDamageReceived)
         {
-            _enemyInfo._health -= _currentPlayerDamage;
+            _enemyInfo._health -= (int)_currentPlayerDamage;
             _isDamageReceived = false;
             if (_enemyInfo._health <= 0)
             {

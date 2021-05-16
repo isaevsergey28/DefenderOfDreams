@@ -86,7 +86,7 @@ public class RelativeMovement : MonoBehaviour
         }
         else
         {
-            _earthMovingAudio.Stop();
+            _currentAudio.Stop();
             _animator.SetBool("isRunning", false);
         }
         

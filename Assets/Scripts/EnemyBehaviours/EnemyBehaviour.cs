@@ -47,7 +47,14 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
 
     public void Destroy(GameObject enemy, float time)
     {
+        ImproveCharacteristics();
         _allEnemies.DestroyEnemy(enemy, time);
+    }
+
+    private void ImproveCharacteristics()
+    {
+        _enemyInfo._damage += (int) (_enemyInfo._damage * 0.1f);
+        _enemyInfo._health += (int) (_enemyInfo._health * 0.1f);
     }
 
     public EnemyType GetEnemyType()

@@ -13,7 +13,8 @@ public class RangedBowSystem : MonoBehaviour
     [SerializeField] private List<GameObject> _allArrows = new List<GameObject>();
 
     [SerializeField] private float _timeToDestroyArrow = 1f;
-
+    [SerializeField] private AudioSource _fireAudio;
+    
     private void Start()
     {
         _rangedBehaviour = gameObject.transform.parent.GetComponent<RangedBehaviour>();
@@ -26,6 +27,7 @@ public class RangedBowSystem : MonoBehaviour
         {
             GameObject arrow;
             arrow = Instantiate(_arrowPrefab, transform.position, Quaternion.identity, _arrowsParent);
+            _fireAudio.Play();
             _allArrows.Add(arrow);
             _rangedBehaviour.isAtacking = false;
             StartCoroutine(Destroy());

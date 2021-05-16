@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class EnemyInfo : MonoBehaviour
 {
-    public float _health;
-    public float _damage;
+    public int _health;
+    public int _damage;
 }

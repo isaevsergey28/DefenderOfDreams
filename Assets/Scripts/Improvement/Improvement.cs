@@ -8,6 +8,13 @@ public class Improvement : MonoBehaviour
     [SerializeField] protected ImprovementType improvementType;
     public delegate void OnTriggerImprovement(GameObject improvement);
     public static event OnTriggerImprovement onTriggerImprovement;
+    protected Animator _animator;
+
+    private void Start()
+    {
+        _animator = GameObject.Find("Player").GetComponent<Animator>();
+    }
+
     protected void AddToInventory()
     {
         onTriggerImprovement?.Invoke(this.gameObject);
