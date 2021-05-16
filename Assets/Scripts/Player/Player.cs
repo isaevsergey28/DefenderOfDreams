@@ -23,13 +23,10 @@ public class Player : MonoBehaviour
     public static OnPlayerHealthChange onPlayerHealthChange;
     
     private HealingState _healingState = HealingState.Healthy;
-    private int _delayForHealing = 5;
     
     private float _maxHealth;
     
-    
-    //public delegate void OnPlayerMaxHealthChange(float damage);
-    //public static OnPlayerMaxHealthChange onPlayerMaxHealthChange; // потом
+
     
     private void Start()
     {
