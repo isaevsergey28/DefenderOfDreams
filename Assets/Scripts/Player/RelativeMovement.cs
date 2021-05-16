@@ -9,7 +9,6 @@ public class RelativeMovement : MonoBehaviour
     [SerializeField] private AudioSource _bridgeMovingAudio;
   
     [SerializeField] private Transform target; 
-    public float rotSpeed = 15.0f;
     public float moveSpeed = 6.0f;
     private CharacterController _charController;
     private Animator _animator;
