@@ -45,7 +45,7 @@ public class MeleeBehaviour : EnemyBehaviour
             if (_enemyInfo._health <= 0)
             {
                 _isAlive = false;
-                _allEnemies.DestroyEnemy(gameObject, 25f);
+                Destroy(gameObject, 25f);
                 OffCollider();
                 SaveDeadEnemyPos(gameObject.transform.position);
             }

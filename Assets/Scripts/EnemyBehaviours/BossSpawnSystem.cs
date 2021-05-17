@@ -10,7 +10,9 @@ public class BossSpawnSystem : MonoBehaviour
     public void SpawnBoss()
     {
         RandomizeSpawnPos();
-        Instantiate(_boss, _spawnPosition, Quaternion.identity, null);
+        GameObject boss;
+        boss = Instantiate(_boss, _spawnPosition, Quaternion.identity, null);
+        boss.transform.parent = GameObject.Find("AllEnemies").transform;
     }
 
     private void RandomizeSpawnPos()

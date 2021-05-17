@@ -33,7 +33,6 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     private void Construct(AllEnemies allEnemies)
     {
         _allEnemies = allEnemies;
-
     }
     private void Awake()
     {
@@ -48,7 +47,10 @@ public class EnemyBehaviour : MonoBehaviour, IEnemyBehaviour
     public void Destroy(GameObject enemy, float time)
     {
         ImproveCharacteristics();
-        _allEnemies.DestroyEnemy(enemy, time);
+        if (enemy.name != "Boss(Clone)")
+        {
+            _allEnemies.DestroyEnemy(enemy, time);
+        }
     }
 
     private void ImproveCharacteristics()

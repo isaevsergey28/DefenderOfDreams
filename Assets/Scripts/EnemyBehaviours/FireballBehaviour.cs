@@ -5,15 +5,9 @@ using Zenject;
 
 public class FireballBehaviour : MonoBehaviour
 {
-    private Player _player;
     private Vector3 _playerPos;
     [SerializeField] private float _arrowSpeed = 45f;
     private int _damage;
-    [Inject]
-    private void Construct(Player player)
-    {
-        _player = player;
-    }
     private void Start()
     {
         _playerPos = GameObject.Find("Player").transform.position;
